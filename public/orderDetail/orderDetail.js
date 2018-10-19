@@ -1,5 +1,8 @@
-angular.module('app').controller('orderDetailController', ['$scope', 'order', 'productService', 'customerService',
-    function ($scope, order, productService, customerService) {
+(function(){
+    'use strict';
+
+    orderDetailController.$inject = ['$scope', 'order', 'productService', 'customerService'];
+    function orderDetailController($scope, order, productService, customerService) {
         $scope.title = 'Order Detail';
         $scope.order = order;
 
@@ -16,4 +19,7 @@ angular.module('app').controller('orderDetailController', ['$scope', 'order', 'p
                 item.itemPrice = item.quantity * product.price;
             });
         }
-    }]);
+    }
+
+    angular.module('app').controller('orderDetailController', orderDetailController);
+})();

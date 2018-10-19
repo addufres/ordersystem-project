@@ -1,5 +1,8 @@
-angular.module('app').controller('ordersController', ['$scope', 'orderService', 'customerService',
-    function ($scope, orderService, customerService) {
+(function(){
+    'use strict';
+
+    ordersController.$inject = ['$scope', 'orderService', 'customerService'];
+    function ordersController($scope, orderService, customerService) {
         $scope.title = 'Orders';
 
         activate();
@@ -14,4 +17,7 @@ angular.module('app').controller('ordersController', ['$scope', 'orderService', 
                 order.customerName = customer.fullName;
             });
         }
-    }]);
+    }
+
+    angular.module('app').controller('ordersController', ordersController);
+})();    

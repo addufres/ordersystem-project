@@ -1,9 +1,16 @@
-angular.module('app').controller('customersController', ['$scope', 'customerService', function($scope, customerService){
-    $scope.title = 'Customers';
+(function(){
+    'use strict';
 
-    activate();
+    customersController.$inject = ['$scope', 'customerService'];
+    function customersController($scope, customerService){
+        $scope.title = 'Customers';
 
-    function activate(){
-         $scope.customers = customerService.getCustomers();
+        activate();
+
+        function activate(){
+            $scope.customers = customerService.getCustomers();
+        }
     }
-}]);
+
+    angular.module('app').controller('customersController', customersController);
+})();

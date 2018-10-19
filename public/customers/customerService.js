@@ -1,5 +1,8 @@
-angular.module('app')
-    .service('customerService', ['$http', function ($http) {
+(function(){
+    'use strict';
+
+    customerService.$inject = ['$http'];
+    function customerService($http) {
         function getCustomers() {
             return customers();
         }
@@ -22,8 +25,11 @@ angular.module('app')
             getCustomer: getCustomer,
             postCustomer: postCustomer
         }
-    }]);
+    }
 
+    angular.module('app')
+        .service('customerService', customerService);
+})();
 //Sample data
 function customers() {
     return [

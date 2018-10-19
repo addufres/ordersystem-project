@@ -1,5 +1,8 @@
-angular.module('app').controller('customerDetailController', ['$scope', 'customer', 'addressFactory', 'orderService',
-    function ($scope, customer, addressFactory, orderService) {
+(function(){
+    'use strict';
+
+    customerDetailController.$inject = ['$scope', 'customer', 'addressFactory', 'orderService'];
+    function customerDetailController($scope, customer, addressFactory, orderService) {
         $scope.title = 'Customer Detail';
         $scope.discountTemplate = '../customerDetail/discount.html';
         $scope.customer = customer;
@@ -13,4 +16,7 @@ angular.module('app').controller('customerDetailController', ['$scope', 'custome
                 order.orderDate = moment(order.orderDate).format("MM/DD/YYYY");
             });
         }
-    }]);
+    }
+
+    angular.module('app').controller('customerDetailController', customerDetailController);
+})();

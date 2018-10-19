@@ -1,9 +1,17 @@
-angular.module('app').controller('productsController', ['$scope', 'productService', function($scope, productService){
-    $scope.title = 'Products';
+(function(){
+    'use strict';
 
-    activate();
+    productsController.$inject = ['$scope', 'productService'];
+    function productsController($scope, productService){
+        $scope.title = 'Products';
 
-    function activate(){
-        $scope.products = productService.getProducts();
+        activate();
+
+        function activate(){
+            $scope.products = productService.getProducts();
+        }
     }
-}]);
+
+
+    angular.module('app').controller('productsController', productsController);
+})();
