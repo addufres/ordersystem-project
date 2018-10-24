@@ -1,16 +1,21 @@
 (function(){
     'use strict';
 
-    customersController.$inject = ['$scope', 'customerService'];
-    function customersController($scope, customerService){
-        $scope.title = 'Customers';
+    var customersComponent = {
+        templateUrl: './customers/customers.html',
+        bindings: {},
+        controller: customersComponentController
+    };
 
-        activate();
+    customersComponentController.$inject = ['customerService'];
+    function customersComponentController(customerService){
+        var vm = this;
+        vm.title = 'Customers';
 
-        function activate(){
-            $scope.customers = customerService.getCustomers();
+       vm.$onInit = function(){
+            vm.customers = customerService.getCustomers();
         }
     }
 
-    angular.module('app').controller('customersController', customersController);
+    angular.module('app').component('customers', customersComponent);
 })();
