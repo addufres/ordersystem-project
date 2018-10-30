@@ -4,7 +4,7 @@ angular.module('app')
             templateUrl : './home/home.html',
             controller  : 'homeController'
         }).when('/customers', {
-            template    : '<customers></customers>'
+            template: '<customers></customers>'
         }).when('/orders', {
             templateUrl : './orders/orders.html',
             controller  : 'ordersController'
@@ -12,8 +12,7 @@ angular.module('app')
             templateUrl : './products/products.html',
             controller  : 'productsController'
         }).when('/customers/:id', {
-            templateUrl : './customerDetail/customerDetail.html',
-            controller  : 'customerDetailController',
+            template: '<customer-detail customer="$resolve.customer"></customer-detail>',
             resolve: {
                 customer: [
                     '$route', 'customerService', function ($route, customerService) {
