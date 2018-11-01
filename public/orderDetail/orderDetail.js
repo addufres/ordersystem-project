@@ -1,17 +1,25 @@
 (function(){
     'use strict';
 
-    orderDetailController.$inject = ['$scope', 'order', 'productService', 'customerService'];
-    function orderDetailController($scope, order, productService, customerService) {
-        $scope.title = 'Order Detail';
-        $scope.order = order;
+    var orderDetailComponent = {
+        templateUrl : './orderDetail/orderDetail.html',
+        bindings: {
+            order: '<'
+        },
+        controller: orderDetailComponentController
+    }
 
-        activate();
 
-        function activate() {
+    orderDetailComponentController.$inject = ['productService', 'customerService'];
+    function orderDetailComponentController(productService, customerService) {
+        var vm = this;
+        vm.title = 'Order Detail';
+        vm.order = this.order;
+
+        vm.$onInit = function() {
             var products = productService.getProducts();
-            $scope.customer = customerService.getCustomer($scope.order.customerId);
-            $scope.order.items.forEach(function (item) {
+            vm.customer = customerService.getCustomer(vm.order.customerId);
+            vm.order.items.forEach(function (item) {
                 var product = _.find(products, function (product) {
                     return product.id === item.productId;
                 })
@@ -21,5 +29,5 @@
         }
     }
 
-    angular.module('app').controller('orderDetailController', orderDetailController);
+    angular.module('app').component('orderDetail', orderDetailComponent);
 })();
