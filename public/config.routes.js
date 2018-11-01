@@ -7,8 +7,7 @@ angular.module('app')
         }).when('/orders', {
             template : '<orders></orders>'
         }).when('/products', {
-            templateUrl : './products/products.html',
-            controller  : 'productsController'
+            template : '<products></products>'
         }).when('/customers/:id', {
             template: '<customer-detail customer="$resolve.customer"></customer-detail>',
             resolve: {
