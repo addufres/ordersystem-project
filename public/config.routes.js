@@ -3,10 +3,9 @@ angular.module('app')
         $routeProvider.when('/', {
             template : '<home></home>'
         }).when('/customers', {
-            template: '<customers></customers>'
+            template : '<customers></customers>'
         }).when('/orders', {
-            templateUrl : './orders/orders.html',
-            controller  : 'ordersController'
+            template : '<orders></orders>'
         }).when('/products', {
             templateUrl : './products/products.html',
             controller  : 'productsController'
