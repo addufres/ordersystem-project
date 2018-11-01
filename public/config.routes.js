@@ -29,8 +29,7 @@ angular.module('app')
                 ]
             }
         }).when('/products/:id', {
-            templateUrl : './productDetail/productDetail.html',
-            controller  : 'productDetailController',
+            template : '<product-detail product="$resolve.product"></product-detail>',
             resolve: {
                 product: [
                     '$route', 'productService', function ($route, productService) {
