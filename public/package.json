@@ -4,8 +4,8 @@
   "description": "This is the demo project for the Upgrading AngularJS course.",
   "main": "app.js",
   "scripts": {
-    "build": "webpack --bail --progress",
-    "dev": "webpack-dev-server",
+    "build": "webpack --bail --progress --mode development",
+    "dev": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sam Julien",
