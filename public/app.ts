@@ -1,6 +1,9 @@
 import * as angular from 'angular';
 import 'angular-route';
 
+import 'jquery';
+import 'lodash';
+
 import hashPrefixConfig from './config.hashprefix';
 import routeProviderConfig from './config.routes';
 import homeComponent from './home/home';
