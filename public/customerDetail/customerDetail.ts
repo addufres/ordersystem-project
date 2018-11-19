@@ -8,14 +8,14 @@ const customerDetailComponent = {
     controller: customerDetailComponentController
 };
 
-customerDetailComponentController.$inject = ['addressFactory', 'orderService'];
-function customerDetailComponentController (addressFactory, orderService) {
+customerDetailComponentController.$inject = ['addressService', 'orderService'];
+function customerDetailComponentController (addressService, orderService) {
     var vm = this;
     vm.title = 'Customer Detail';
     vm.customer = this.customer;
     
     vm.$onInit = () => {
-        vm.address = addressFactory.getFullAddress(vm.customer);
+        vm.address = addressService.getFullAddress(vm.customer);
         vm.orders = orderService.getOrdersByCustomer(vm.customer.id);
         vm.orders.forEach((order) => {
             order.orderDate = moment(order.orderDate).format("MM/DD/YYYY");
