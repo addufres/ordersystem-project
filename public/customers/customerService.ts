@@ -1,35 +1,26 @@
-(function(){
-    'use strict';
-
-    customerService.$inject = ['$http'];
-    function customerService($http) {
-        function getCustomers() {
-            return customers();
-        }
-
-        function getCustomer(id) {
-            return customers().filter(function (c) {
-                return c.id === id;
-            })[0];
-        }
-
-        function postCustomer(customer) {
-            return $http.post('/api/customers', customer)
-                .then(function (data) {
-                    return data;
-                });
-        }
-
-        return {
-            getCustomers: getCustomers,
-            getCustomer: getCustomer,
-            postCustomer: postCustomer
-        }
+class CustomerService{
+    $http: any;
+    constructor ($http) {
+        this.$http = $http;
     }
 
-    angular.module('app')
-        .service('customerService', customerService);
-})();
+    getCustomers() {
+        return customers();
+    }
+
+    getCustomer(id) {
+        return customers().filter((c) => c.id === id)[0];
+    }
+
+    postCustomer(customer) {
+        return this.$http.post('/api/customers', customer)
+            .then((data) => data);
+    }
+}
+CustomerService.$inject = ['$http'];
+
+export default CustomerService;
+
 //Sample data
 function customers() {
     return [
