@@ -1,43 +1,29 @@
-(function () {
-    'use strict'
+import * as _ from 'lodash';
+class OrderService {
+    $http: any;
+    constructor ($http) {
+        
+    }
+    getOrders() {
+        return orders();
+    }
 
-    orderService.$inject = ['$http'];
+    getOrder(id) {
+        return _.find(orders(), (o) => o.id === id);
+    }
 
-    function orderService($http) {
-        function getOrders() {
-            return orders();
-        }
+    getOrdersByCustomer(customerId) {
+        return orders().filter((o) => o.customerId === customerId);
+    }
 
-        function getOrder(id) {
-            return _.find(orders(), function (o) {
-                return o.id === id;
-            });
-        }
+    postOrder(order) {
+        return this.$http.post('/api/orders', order)
+            .then((data) => data);
+    }
+};
+OrderService.$inject = ['$http'];
 
-        function getOrdersByCustomer(customerId) {
-            return orders().filter(function (o) {
-                return o.customerId === customerId;
-            });
-        }
-
-        function postOrder(order) {
-            return $http.post('/api/orders', order)
-                .then(function (data) {
-                    return data;
-                });
-        }
-
-        return {
-            getOrders: getOrders,
-            getOrder: getOrder,
-            getOrdersByCustomer: getOrdersByCustomer,
-            postOrder: postOrder
-        }
-    };
-
-    angular.module('app')
-        .service('orderService', orderService);
-})();
+export default OrderService;
 
 //Sample data
 function orders() {
