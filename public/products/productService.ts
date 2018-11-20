@@ -1,51 +1,27 @@
 class ProductService {
     $http: any;
-    constructor ($http) {
-
-    }
-    getProducts() {
-        return products();
+    constructor($http) {
+        this.$http = $http;
     }
 
-    getProduct(id) {
-        return products().filter((p) => p.id === id)[0];
+    getProducts(){
+        return this.$http.get('/api/products')
+            .then((response) => response.data);
     }
 
-    postProduct(product) {
+    getProduct(id){
+        return this.$http.get(`/api/products/${id}`)
+            .then((response) => response.data);
+    }
+
+    postProduct(product){
         return this.$http.post('/api/products', product)
-            .then((data) => data);
+            .then(function(data){
+                return data;
+            });
     }
-}
+};
+
 ProductService.$inject = ['$http'];
 
 export default ProductService;
-
-//Sample data
-function products() {
-    return [
-        {
-            id: 1,
-            name: 'Amazing Widget',
-            color: 'Red',
-            price: 2.5
-        },
-        {
-            id: 2,
-            name: 'Incredible Widget',
-            color: 'Blue',
-            price: 2.5
-        },
-        {
-            id: 3,
-            name: 'Fantastic Widget',
-            color: 'Yellow',
-            price: 2.5
-        },
-        {
-            id: 4,
-            name: 'Collectible Widget Tote Bag',
-            color: 'Sand',
-            price: 10
-        }
-    ];
-}
